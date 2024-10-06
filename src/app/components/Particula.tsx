@@ -12,8 +12,8 @@ export const Particula: React.FC<ParticulaProps> = ({ position, direction, speed
   const [currentPosition, setCurrentPosition] = useState(position);
 
   // Fijar el tamaño y el color de las partículas
-  const fixedSize = 5; // Tamaño fijo de las partículas
-  const color = new THREE.Color('yellow'); // Color rojo fijo
+  const fixedSize = 3.5; // Tamaño fijo de las partículas
+  const color = new THREE.Color('orange'); // Color rojo fijo
 
   const radiusTierra = 6.371; // Radio de la Tierra en unidades
   const maxDistance = 60; // Distancia máxima en la que la partícula puede pasar cerca de la Tierra

@@ -13,7 +13,7 @@ interface EsferasRadialesProps {
 export const EsferasRadiales: React.FC<EsferasRadialesProps> = ({
   posicionInicial = [10, 10, 10],
   posicionFinal = [0, 0, 0],
-  numeroEsferas = 100,
+  numeroEsferas = 300,
   radio = 2,
 }) => {
   const [posiciones, setPosiciones] = useState<THREE.Vector3[]>([]);
@@ -22,13 +22,11 @@ export const EsferasRadiales: React.FC<EsferasRadialesProps> = ({
   const esferasRef = useRef<THREE.Group>(null);
 
   const inicializarEsferas = () => {
-    // Generar posiciones iniciales en el punto inicial
     const nuevasPosiciones = Array.from({ length: numeroEsferas }, () => new THREE.Vector3(...posicionInicial));
-    
-    // Generar velocidades aleatorias en una dirección radial
+
     const nuevasVelocidades = nuevasPosiciones.map(() => {
       const direccion = new THREE.Vector3(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).normalize();
-      return direccion.multiplyScalar(24); // Velocidad de dispersión ajustada
+      return direccion.multiplyScalar(24 * 1.4); // Velocidad de dispersión ajustada (40% más rápida)
     });
 
     setPosiciones(nuevasPosiciones);
@@ -40,12 +38,17 @@ export const EsferasRadiales: React.FC<EsferasRadialesProps> = ({
   }, [posicionInicial, numeroEsferas]);
 
   useFrame((state, delta) => {
-    const distanciaMaxima = 100; // Aumentar la distancia máxima de dispersión
+    const distanciaMaxima = 60; // Aumentar la distancia máxima de dispersión
 
     setPosiciones((posicionesPrevias) =>
       posicionesPrevias.map((posicion, index) => {
         const velocidad = velocidades[index];
         const distanciaAlCentro = posicion.distanceTo(new THREE.Vector3(...posicionInicial));
+
+        // Asegúrate de que velocidad esté definido antes de usarlo
+        if (!velocidad) {
+          return posicion; // Si no hay velocidad, simplemente devuelve la posición actual
+        }
 
         // Controlar el movimiento: dispersión y luego retorno
         if (!enRetorno) {
@@ -59,7 +62,7 @@ export const EsferasRadiales: React.FC<EsferasRadialesProps> = ({
         } else {
           // Movimiento de retorno hacia el punto final
           const direccionRetorno = new THREE.Vector3(...posicionFinal).sub(posicion).normalize();
-          const nuevaPosicion = posicion.clone().add(direccionRetorno.multiplyScalar(24 * delta)); // Velocidad de retorno ajustada
+          const nuevaPosicion = posicion.clone().add(direccionRetorno.multiplyScalar(24 * 1.4 * delta)); // Velocidad de retorno ajustada (40% más rápida)
 
           // Si están lo suficientemente cerca del punto final, reiniciar el ciclo
           if (nuevaPosicion.distanceTo(new THREE.Vector3(...posicionFinal)) < 0.1) {

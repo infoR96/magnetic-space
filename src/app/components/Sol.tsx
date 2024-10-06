@@ -16,7 +16,7 @@ export const Sol: React.FC = () => {
   });
 
   return (
-    <mesh ref={earthRef} position={[-8960, 0, 0]}>
+    <mesh ref={earthRef} position={[-4960, 0, 0]}>
       <sphereGeometry args={[696.340, 64, 64]} />
       <meshStandardMaterial map={texturaTierra} />
     </mesh>
