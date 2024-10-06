@@ -1,0 +1,44 @@
+.background-image {
+    background-image: url('/imagenes/inicio.png');
+    background-size: auto; /* Cambia a auto para que no se ajuste */
+    background-repeat: repeat; /* Repite la imagen en ambas direcciones */
+    background-position: center; /* Centrar la imagen */
+    height: 130vh; /* Altura completa de la pantalla */
+    width: 100%;
+}
+  .solar-storm-container {
+    text-align: center;
+    padding: 20px;
+    color: white; /* Hacer el texto blanco para que contraste */
+  }
+  
+  .solar-storm-header {
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semi-transparente */
+    padding: 20px;
+    border-radius: 10px; /* Bordes redondeados */
+    max-width: 900px; /* Limitar el ancho */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .solar-storm-header h1 {
+    font-size: 3rem; /* Tamaño grande para títulos */
+    margin-bottom: 10px;
+  }
+  
+  .solar-storm-header p {
+    font-size: 1.2rem; /* Tamaño legible para párrafos */
+    line-height: 1.6; /* Mejorar la legibilidad */
+  }
+  
+  /* Estilos para móviles */
+  @media (max-width: 768px) {
+    .solar-storm-header h1 {
+      font-size: 2rem; /* Tamaño más pequeño en pantallas móviles */
+    }
+  
+    .solar-storm-header p {
+      font-size: 1rem;
+    }
+  }
+  

@@ -1,0 +1,8 @@
+.background-image {
+    background-image: url('/imagenes/inicio.png');
+    background-size: auto; /* Cambia a auto para que no se ajuste */
+    background-repeat: repeat; /* Repite la imagen en ambas direcciones */
+    background-position: center; /* Centrar la imagen */
+    height: 130vh; /* Altura completa de la pantalla */
+    width: 100%;
+}

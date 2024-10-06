@@ -1,0 +1,99 @@
+.geomagnetic-storm-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px; /* Ajusta según sea necesario */
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .content {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .images {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* Para que ocupe el 100% del contenedor */
+    max-width: 600px; /* Ajusta el ancho según sea necesario */
+  }
+  
+  .images img {
+    width: 100px; /* Ajusta el tamaño de las imágenes pequeñas */
+    height: auto; /* Mantiene la proporción */
+    margin: 0 10px; /* Espaciado entre las imágenes */
+  }
+  
+  h1 {
+    font-size: 2.5rem; /* Ajusta el tamaño de fuente del encabezado */
+  }
+  
+  .texto {
+    font-size: 1.2rem; /* Ajusta el tamaño de fuente del párrafo */
+  }
+  
+  /* Estilos responsivos */
+  @media (max-width: 768px) {
+    .geomagnetic-storm-container {
+      padding: 10px;
+    }
+  
+    h1 {
+      font-size: 2rem; /* Reduce el tamaño en pantallas pequeñas */
+    }
+  
+    p {
+      font-size: 1rem; /* Reduce el tamaño en pantallas pequeñas */
+    }
+  
+    .images {
+      flex-direction: column; /* Coloca las imágenes en columna en pantallas pequeñas */
+      align-items: center; /* Centra las imágenes */
+    }
+  
+    .images img {
+      margin: 10px 0; /* Espaciado vertical entre imágenes */
+    }
+  }
+  
+  .effects-container {
+    background-color: #f9f9f9; /* Fondo claro */
+    border: 2px solid #0073e6; /* Borde azul */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 20px; /* Espacio interno */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    margin: 20px auto; /* Centrado en la página */
+    max-width: 600px; /* Ancho máximo */
+  }
+  
+  h2 {
+    text-align: center; /* Centrar el título */
+    color: #0073e6; /* Color azul para el título */
+    font-size: 1.8rem; /* Tamaño de fuente del título */
+    margin-bottom: 15px; /* Espacio debajo del título */
+  }
+  
+  .effects-list {
+    list-style-type: none; /* Eliminar la numeración predeterminada */
+    padding: 0; /* Eliminar padding */
+  }
+  
+  .effects-list li {
+    background-color: #e6f2ff; /* Color de fondo para cada ítem */
+    border: 1px solid #0073e6; /* Borde azul para cada ítem */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px; /* Espacio interno */
+    margin-bottom: 10px; /* Espacio entre elementos */
+    transition: background-color 0.3s; /* Efecto de transición */
+  }
+  
+  .effects-list li:hover {
+    background-color: #cce4ff; /* Cambio de color al pasar el ratón */
+  }
+  
+  strong {
+    color: #0056b3; /* Color más oscuro para el texto fuerte */
+  }
+  
