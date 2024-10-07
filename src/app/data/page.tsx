@@ -42,8 +42,10 @@ const CsvUploader: React.FC = () => {
   };
 
   const preparePlotData = (csvData: string[][]) => {
-    const xValues = csvData.map((row) => convertExcelDateToJSDate(parseFloat(row[1])));
-    const yValues = csvData.map((row) => parseFloat(row[2]));
+    const xValues = csvData.map((row) => convertExcelDateToJSDate(parseFloat(row[2])));
+    const yValues = csvData.map((row) => parseFloat(row[3]));
+
+    console.log('GIAN',xValues,yValues)
 
     const trace1: Trace = {
       x: xValues,
@@ -57,9 +59,9 @@ const CsvUploader: React.FC = () => {
   };
 
   const prepareVelocityData = (csvData: string[][]) => {
-    const yValues = csvData.map((row) => parseFloat(row[2]));
-    console.log('VALUES',yValues)
-    const xValues = csvData.map((row) => parseFloat(row[3]));
+    const yValues = csvData.map((row) => parseFloat(row[3]));
+
+    const xValues = csvData.map((row) => parseFloat(row[1]));
 
     const trace2: Trace = {
       x: xValues.map(value => convertExcelDateToJSDate(value)),
@@ -74,6 +76,9 @@ const CsvUploader: React.FC = () => {
 
   return (
     <div>
+
+      <h1>Here you can upload a .csv file with the following format to analyze </h1>
+      <img src="/imagenes/format.jpg" alt="Valid format" />
       <input type="file" accept=".csv" onChange={handleFileUpload} />
       
       {plotData.length > 0 && (
