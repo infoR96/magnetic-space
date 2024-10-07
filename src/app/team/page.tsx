@@ -20,17 +20,17 @@ const teamMembers: TeamMember[] = [
   },
   {
     name: "Estephano Quiroz Aguirre",
-    description: "Mining Engineer specializing in Integrated Management Systems, passionate about geological exploration, data science, and the development of new technologies. I enjoy applying data analysis to improve efficiency in mining projects and exploring innovations that drive the industry forward. My curiosity and dedication keep me in constant learning, always seeking new ways to integrate technology with mining and other industries.",
+    description: "Mining Engineer specializing in Integrated Management Systems, passionate about geological exploration, data science, and the development of new technologies. I enjoy applying data analysis to improve efficiency in mining projects and exploring innovations that drive the industry forward. My curiosity and dedication keep me in constant learning, always seeking new ways to integrate technology with mining and other industries.",
     image: "/imagenes/favio.jpg",
   },
   {
     name: "Giancarlo Ramón Centurión Camacho",
     description: "I am a mining engineer and self-taught programmer. I really like science and technology, and my curiosity is what has led me to find great satisfaction in innovative solutions. Among my other passions is high-speed skating professionally at the highest level. It motivates my family and the desire to achieve my best version.",
-    image: "imagenes/gian.jpg",
+    image: "/imagenes/gian.jpg",
   },
   {
     name: "Victor Silverio Salazar Julca",
-    description: "Graduated in Geological Engineering, with experience in mining exploration and geotechnics. I have a high commitment to continuous professional development and a desire to support and collaborate with others. Passionate about research and innovation. In my free time I enjoy traveling and capturing unforgettable moments through photography and immersing myself in good music to enrich those experiences.",
+    description: "Graduated in Geological Engineering, with experience in mining exploration and geotechnics. I have a high commitment to continuous professional development and a desire to support and collaborate with others. Passionate about research and innovation. In my free time I enjoy traveling and capturing unforgettable moments through photography and immersing myself in good music to enrich those experiences.",
     image: "/imagenes/vic.jpg",
   },
 ];
@@ -45,8 +45,8 @@ const TeamSection: React.FC = () => {
       <div style={styles.teamGrid}>
         {teamMembers.map((member, index) => (
           <div key={index} style={styles.card}>
-              <img src={member.image} alt={member.name} style={styles.image} />
             <div style={styles.imageWrapper}>
+              <img src={member.image} alt={member.name} style={styles.image} />
             </div>
             <div style={styles.info}>
               <h3 style={styles.name}>{member.name}</h3>
@@ -65,43 +65,41 @@ const styles: { [key: string]: React.CSSProperties } = {
     padding: "2rem",
     backgroundColor: "#000", // Fondo oscuro
     color: "#fff",
-  },
-  heading: {
-    textAlign: "center",
-    fontSize: "2rem",
-    marginBottom: "2rem",
+    width: "100%", // Asegura que el contenedor use el ancho completo
   },
   teamGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(2, 1fr)",
+    gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))", // Adaptable a diferentes tamaños
     gap: "2rem",
     justifyContent: "center",
   },
   card: {
     display: "flex",
+    flexDirection: "column", // Acomoda la imagen y la info verticalmente
     alignItems: "center",
     backgroundColor: "rgba(255, 255, 255, 0.1)", // Transparente
     borderRadius: "10px",
     padding: "1rem",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-    transition: "transform 0.3s", // Suavidad en la transformación
+    transition: "transform 0.3s",
+    textAlign: "center", // Centra el texto
   },
   imageWrapper: {
     display: "inline-block",
     borderRadius: "50%",
     overflow: "hidden",
-    width: "50px",
-    height: "50px",
-    marginRight: "1rem",
-    transition: "transform 0.3s", // Efecto de agrandar
+    width: "100px", // Aumenta el tamaño de la imagen
+    height: "100px",
+    marginBottom: "1rem",
   },
   image: {
     width: "100%",
     height: "100%",
-    transition: "transform 0.3s", // Animación suave para el hover
+    objectFit: "cover", // Asegura que la imagen cubra el área
+    transition: "transform 0.3s",
   },
   info: {
-    textAlign: "left",
+    textAlign: "center", // Asegura que la información esté centrada
   },
   name: {
     fontSize: "1.2rem",
@@ -111,27 +109,23 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontSize: "1rem",
     color: "#ccc",
   },
-  cardHover: {
-    transform: "scale(1.05)", // Agranda la tarjeta en hover
-  },
-  imageHover: {
-    transform: "scale(1.2)", // Agranda la imagen en hover
-  },
 };
 
 const styles2: { [key: string]: React.CSSProperties } = {
   row: {
     display: "flex",
+    flexDirection: "column",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "center",
     width: "100%",
     padding: "20px",
-    boxSizing: "border-box", // Valor específico esperado por TypeScript
+    boxSizing: "border-box",
   },
   heading: {
     fontSize: "24px",
     fontWeight: "bold",
     margin: 0,
+    textAlign: "center", // Centra el encabezado
   },
 };
 
