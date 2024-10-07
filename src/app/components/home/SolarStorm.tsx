@@ -35,9 +35,9 @@ export const SolarStorm: React.FC = () => {
             <img src="/imagenes/1.3_data_recollection.png" alt="Data Recollection" />
             <h2>DATA RECOLLECTION</h2>
           </a>
-          <a href="/data" className="card">
+          <a href="/team" className="card">
             <img src="/imagenes/1.4_solar_data.png" alt="Solar Data" />
-            <h2>SOLAR DATA</h2>
+            <h2>TEAM TURING</h2>
           </a>
         </div>
       </div>

@@ -1,13 +1,24 @@
-"use client";
-
+// CsvUploader.tsx
+'use client'
+import dynamic from 'next/dynamic';
 import React, { useState } from "react";
 import Papa from "papaparse";
-import Plot from "react-plotly.js";
+
+// Cargar Plot dinámicamente
+const Plot = dynamic(() => import("react-plotly.js"), { ssr: false });
+
+interface Trace {
+  x: Date[];
+  y: number[];
+  mode: string;
+  name: string;
+  line: { shape: string; color: string };
+}
 
 const CsvUploader: React.FC = () => {
   const [data, setData] = useState<string[][]>([]);
-  const [plotData, setPlotData] = useState<any[]>([]);
-  const [velocityData, setVelocityData] = useState<any[]>([]);
+  const [plotData, setPlotData] = useState<Trace[]>([]);
+  const [velocityData, setVelocityData] = useState<Trace[]>([]);
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -26,16 +37,15 @@ const CsvUploader: React.FC = () => {
   };
 
   const convertExcelDateToJSDate = (excelDate: number) => {
-    // Excel date to JS Date conversion
     const date = new Date((excelDate - 25569) * 86400 * 1000);
     return date;
   };
 
   const preparePlotData = (csvData: string[][]) => {
-    const xValues = csvData.map((row) => convertExcelDateToJSDate(parseFloat(row[0]))); // Convertir a fecha
-    const yValues = csvData.map((row) => parseFloat(row[1])); // Densidad
+    const xValues = csvData.map((row) => convertExcelDateToJSDate(parseFloat(row[1])));
+    const yValues = csvData.map((row) => parseFloat(row[2]));
 
-    const trace1 = {
+    const trace1: Trace = {
       x: xValues,
       y: yValues,
       mode: "lines+markers",
@@ -47,11 +57,12 @@ const CsvUploader: React.FC = () => {
   };
 
   const prepareVelocityData = (csvData: string[][]) => {
-    const yValues = csvData.map((row) => parseFloat(row[1])); // Densidad (asumiendo que está en la columna 1)
-    const xValues = csvData.map((row) => parseFloat(row[4])); // Velocidad (asumiendo que está en la columna 4)
+    const yValues = csvData.map((row) => parseFloat(row[2]));
+    console.log('VALUES',yValues)
+    const xValues = csvData.map((row) => parseFloat(row[3]));
 
-    const trace2 = {
-      x: xValues,
+    const trace2: Trace = {
+      x: xValues.map(value => convertExcelDateToJSDate(value)),
       y: yValues,
       mode: "lines+markers",
       name: "Velocidad vs Densidad",
@@ -99,9 +110,10 @@ const CsvUploader: React.FC = () => {
           <tbody>
             {data.map((row, index) => (
               <tr key={index}>
-                <td>{row[0]}</td> {/* Cambiado para mostrar la columna de Hora correcta */}
-                <td>{row[1]}</td> {/* Densidad */}
-                <td>{row[4]}</td> {/* Velocidad */}
+                <td>{row[0]}</td>
+                <td>{row[1]}</td>
+                <td>{row[2]}</td>
+                <td>{row[3]}</td>
               </tr>
             ))}
           </tbody>
