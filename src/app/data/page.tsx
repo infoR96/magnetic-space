@@ -3,8 +3,7 @@
 import dynamic from 'next/dynamic';
 import React, { useState } from "react";
 import Papa from "papaparse";
-import UserList from '../components/data/UserList';
-import RegisterForm from '../components/users/RegisterForm';
+
 
 // Cargar Plot dinámicamente
 const Plot = dynamic(() => import("react-plotly.js"), { ssr: false });
@@ -126,8 +125,7 @@ const CsvUploader: React.FC = () => {
           </tbody>
         </table>
       )}
-          <UserList />
-          <RegisterForm />
+    
     </div>
   );
 };
