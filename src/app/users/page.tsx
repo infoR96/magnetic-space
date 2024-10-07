@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
 import UserList from "../components/data/UserList";
 import RegisterForm from "../components/users/RegisterForm";
