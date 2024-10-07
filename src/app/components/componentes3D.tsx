@@ -1,5 +1,5 @@
-'use client'
-import React, { useState, useEffect, useRef } from 'react';
+'use client';
+import React, { useEffect, useRef } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import Sol from './Sol';
@@ -17,7 +17,7 @@ const Earth: React.FC = () => {
   // Agregar rotación en cada frame
   useFrame(() => {
     if (earthRef.current) {
-      earthRef.current.rotation.y += 0.001; // Ajusta la velocidad de rotación
+      earthRef.current.rotation.y += 0.005; // Ajusta la velocidad de rotación
     }
   });
 
@@ -30,21 +30,15 @@ const Earth: React.FC = () => {
 };
 
 // Componente para la escena
-const Scene: React.FC<{ cameraPosition: [number, number, number]}> = ({ cameraPosition }) => {
-  const { camera } = useThree();
-  const [initialized, setInitialized] = useState(false);
+const Scene: React.FC = () => {
+  const { camera } = useThree(); // Obtén acceso a la cámara
 
   useEffect(() => {
-    if (!initialized) {
-      camera.position.set(...cameraPosition);
-      camera.near = 0.1; // Valor cercano
-      camera.far = 1000000; // Valor lejano
-      camera.lookAt(0, 0, 0);
-      camera.updateProjectionMatrix();
-      setInitialized(true);
-    }
-  }, [cameraPosition, camera, initialized]);
-  
+    // Establecer la posición inicial de la cámara en [40, 40, 40]
+    camera.position.set(40, 40, 40);
+    camera.lookAt(0, 0, 0); // Asegúrate de que la cámara esté apuntando al centro
+    camera.updateProjectionMatrix(); // Actualizar la matriz de proyección de la cámara después del cambio de posición
+  }, [camera]); // Solo lo ejecutamos una vez cuando el componente se monta
 
   return (
     <>
@@ -52,26 +46,26 @@ const Scene: React.FC<{ cameraPosition: [number, number, number]}> = ({ cameraPo
       <directionalLight position={[2, 5, 2]} intensity={1} />
       <axesHelper args={[100]} />
       <Sol />
-      <Elipse color='red' centro={[-30, 0]} radios={[30, 17]} />
-      <Elipse color='red' centro={[-26, 0]} radios={[28, 17]} />
-      <Elipse color='red' centro={[-24, 0]} radios={[26, 17]} />
-      <Elipse color='red' centro={[-22, 0]} radios={[24, 17]} />
-      <Elipse color='red' centro={[-20, 0]} radios={[22, 17]} />
-      <Elipse color='red' centro={[-18, 0]} radios={[20, 17]} />
-      <Elipse color='red' centro={[-16, 0]} radios={[18, 17]} />
-      <Elipse color='red' centro={[-14, 0]} radios={[16, 17]} />
-      <Elipse color='red' centro={[-12, 0]} radios={[14, 17]} />
-      <Elipse color='blue' centro={[300, 0]} radios={[300, 17]} />
-      <Elipse color='blue' centro={[280, 0]} radios={[280, 17]} />
-      <Elipse color='blue' centro={[240, 0]} radios={[240, 17]} />
-      <Elipse color='blue' centro={[220, 0]} radios={[220, 17]} />
-      <Elipse color='blue' centro={[200, 0]} radios={[200, 17]} />
-      <Elipse color='blue' centro={[180, 0]} radios={[180, 17]} />
-      <Elipse color='blue' centro={[160, 0]} radios={[160, 17]} />
-      <Elipse color='blue' centro={[140, 0]} radios={[140, 17]} />
-      <Elipse color='blue' centro={[120, 0]} radios={[120, 17]} />
+      <Elipse color="red" centro={[-30, 0]} radios={[30, 17]} />
+      <Elipse color="red" centro={[-26, 0]} radios={[28, 17]} />
+      <Elipse color="red" centro={[-24, 0]} radios={[26, 17]} />
+      <Elipse color="red" centro={[-22, 0]} radios={[24, 17]} />
+      <Elipse color="red" centro={[-20, 0]} radios={[22, 17]} />
+      <Elipse color="red" centro={[-18, 0]} radios={[20, 17]} />
+      <Elipse color="red" centro={[-16, 0]} radios={[18, 17]} />
+      <Elipse color="red" centro={[-14, 0]} radios={[16, 17]} />
+      <Elipse color="red" centro={[-12, 0]} radios={[14, 17]} />
+      <Elipse color="blue" centro={[300, 0]} radios={[300, 17]} />
+      <Elipse color="blue" centro={[280, 0]} radios={[280, 17]} />
+      <Elipse color="blue" centro={[240, 0]} radios={[240, 17]} />
+      <Elipse color="blue" centro={[220, 0]} radios={[220, 17]} />
+      <Elipse color="blue" centro={[200, 0]} radios={[200, 17]} />
+      <Elipse color="blue" centro={[180, 0]} radios={[180, 17]} />
+      <Elipse color="blue" centro={[160, 0]} radios={[160, 17]} />
+      <Elipse color="blue" centro={[140, 0]} radios={[140, 17]} />
+      <Elipse color="blue" centro={[120, 0]} radios={[120, 17]} />
       <Earth />
-      <PaqueteDeParticulas numParticulas={8} area={700} speed={100}  />
+      <PaqueteDeParticulas numParticulas={8} area={500} speed={100} />
       {true && (
         <EsferasRadiales 
           posicionInicial={[-60, 0, 0]} 
@@ -88,22 +82,15 @@ const Scene: React.FC<{ cameraPosition: [number, number, number]}> = ({ cameraPo
 
 // Componente principal de la aplicación
 const App: React.FC = () => {
-  const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([20, 20, 20]); // Cambiar posición inicial a [20, 20, 20]
-
-
   return (
     <div style={{ width: '75vw', height: '75vh', margin: 'auto', position: 'relative' }}>
-      <Canvas style={{ background: '#000' }} camera={{ position: cameraPosition, fov: 75, near: 0.1, far: 10000 }}>
-        <Scene 
-          cameraPosition={cameraPosition} 
-          
-       
-        />
+      <Canvas style={{ background: '#000' }} camera={{ fov: 75, near: 0.1, far: 10000 }}>
+        <Scene />
       </Canvas>
 
       {/* Controles fuera del Canvas */}
       <div style={{ position: 'absolute', top: 10, left: 10, zIndex: 1 }}>
-      
+        {/* Controles adicionales o información */}
       </div>
     </div>
   );

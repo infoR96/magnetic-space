@@ -21,7 +21,7 @@ export const PaqueteDeParticulas: React.FC<{ numParticulas: number; area: number
       const posZ = (Math.random() - 0.5) * area;
 
       // Dirección hacia la Tierra (0, 0, 0)
-      const direction = new THREE.Vector3(0, 0, 0).sub(new THREE.Vector3(posX, posY, posZ)).normalize();
+      const direction = new THREE.Vector3(80, 10, 0).sub(new THREE.Vector3(posX, posY, posZ)).normalize();
 
       nuevasParticulas.push({
         position: new THREE.Vector3(posX, posY, posZ),
@@ -52,7 +52,7 @@ export const PaqueteDeParticulas: React.FC<{ numParticulas: number; area: number
       setParticulas(prev => {
         return prev.map(p => {
           // Mover la partícula en la dirección especificada
-          p.position.add(p.direction.clone().multiplyScalar(p.speed * 0.01));
+          p.position.add(p.direction.clone().multiplyScalar(p.speed * 0.3));
 
           // Comprobar si la partícula ha alcanzado el destino
           if (p.position.x <= -30 && p.position.y === 0 && p.position.z === 0) {
@@ -60,7 +60,7 @@ export const PaqueteDeParticulas: React.FC<{ numParticulas: number; area: number
           }
 
           // Evitar que la partícula atraviese el punto (0, 0, 0)
-          if (p.position.length() < 0.1) { // Si está muy cerca del origen
+          if (p.position.length() < -1) { // Si está muy cerca del origen
             
             p.position.set(-30, 0, 0); // Colocar la partícula en la posición de destrucción
             p.onDestroy();

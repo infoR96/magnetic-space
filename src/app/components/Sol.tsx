@@ -11,7 +11,7 @@ export const Sol: React.FC = () => {
   // Agregar rotación en cada frame
   useFrame(() => {
     if (earthRef.current) {
-      earthRef.current.rotation.y += 0.01; // Ajusta la velocidad de rotación
+      earthRef.current.rotation.y += 0.001; // Ajusta la velocidad de rotación
     }
   });
 
