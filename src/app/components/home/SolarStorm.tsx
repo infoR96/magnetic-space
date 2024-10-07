@@ -15,11 +15,12 @@ export const SolarStorm: React.FC = () => {
 
         <div className="video-container">
           <iframe
-            src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+            src="https://www.youtube.com/embed/5edc6WE-OHE?si=QlRrxMemSrIAsH4w"
             title="YouTube Video"
             allowFullScreen
             className="video"
           />
+         
         </div>
         <div className="cards">
           <a href="/simulation" className="card">

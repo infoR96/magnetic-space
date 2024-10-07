@@ -52,7 +52,7 @@ export const PaqueteDeParticulas: React.FC<{ numParticulas: number; area: number
       setParticulas(prev => {
         return prev.map(p => {
           // Mover la partícula en la dirección especificada
-          p.position.add(p.direction.clone().multiplyScalar(p.speed * 0.3));
+          p.position.add(p.direction.clone().multiplyScalar(p.speed * 0.02));
 
           // Comprobar si la partícula ha alcanzado el destino
           if (p.position.x <= -30 && p.position.y === 0 && p.position.z === 0) {

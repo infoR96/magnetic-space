@@ -1,0 +1,35 @@
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .responsive-logo {
+    max-width: 150%; /* Permite que la imagen sea más grande que su contenedor */
+    height: auto; /* Mantiene la proporción original de la imagen */
+    object-fit: contain; /* Ajusta la imagen dentro del contenedor sin distorsionarla */
+    padding: 5px;
+  }
+  
+  /* Ajustes específicos para pantallas medianas */
+  @media (max-width: 1024px) {
+    .responsive-logo {
+      max-width: 140%; /* Un poco más pequeña en pantallas medianas */
+    }
+  }
+  
+  /* Ajustes para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .responsive-logo {
+      max-width: 100%; /* Ocupa todo el ancho del contenedor en pantallas pequeñas */
+    }
+  }
+  
+  /* Ajustes para pantallas muy pequeñas */
+  @media (max-width: 480px) {
+    .responsive-logo {
+      max-width: 80%; /* Más pequeña en pantallas de móvil */
+    }
+  }
+  
