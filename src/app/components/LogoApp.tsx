@@ -1,5 +1,5 @@
 import React from 'react';
-import './Logo.css'; // Importa los estilos
+
 
 interface LogoProps {
   src: string;
