@@ -20,6 +20,7 @@ import {
     { name: 'Impact', href: '/impact', icon: UserGroupIcon }, 
     { name: 'Geomagnetic Storm', href: '/storm', icon: BoltIcon },
     { name: 'Team', href: '/team', icon: UserGroupIcon },
+    { name: 'Users', href: '/users', icon: UserGroupIcon },
   ];
   
   export default function NavLinks() {
